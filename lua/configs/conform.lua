@@ -7,6 +7,7 @@ local options = {
     templ = { "templ" },
     json = { "jsonls" },
     python = { "black" },
+    terraform = { "terraformls" },
   },
   format_on_save = {
     -- These options will be passed to conform.format()
