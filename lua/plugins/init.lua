@@ -205,27 +205,27 @@ return {
           prt.logger.info("Debugging selection with model: " .. model_obj.name)
           prt.Prompt(params, prt.ui.Target.enew, model_obj, nil, template)
         end,
-        -- CommitMsg = function(prt, params)
-        --   local futils = require "parrot.file_utils"
-        --   if futils.find_git_root() == "" then
-        --     prt.logger.warning "Not in a git repository"
-        --     return
-        --   else
-        --     local template = [[
-        --   I want you to act as a commit message generator. I will provide you
-        --   with information about the task and the prefix for the task code, and
-        --   I would like you to generate an appropriate commit message using the
-        --   conventional commit format. Do not write any explanations or other
-        --   words, just reply with the commit message.
-        --   Start with a short headline as summary but then list the individual
-        --   changes in more detail.
-        --
-        --   Here are the changes that should be considered by this message:
-        --   ]] .. vim.fn.system "git diff --no-color --no-ext-diff --staged"
-        --     local model_obj = prt.get_model "command"
-        --     prt.Prompt(params, prt.ui.Target.append, model_obj, nil, template)
-        --   end
-        -- end,
+        CommitMsg = function(prt, params)
+          local futils = require "parrot.file_utils"
+          if futils.find_git_root() == "" then
+            prt.logger.warning "Not in a git repository"
+            return
+          else
+            local template = [[
+          I want you to act as a commit message generator. I will provide you
+          with information about the task and the prefix for the task code, and
+          I would like you to generate an appropriate commit message using the
+          conventional commit format. Do not write any explanations or other
+          words, just reply with the commit message.
+          Start with a short headline as summary but then list the individual
+          changes in more detail.
+
+          Here are the changes that should be considered by this message:
+          ]] .. vim.fn.system "git diff --no-color --no-ext-diff --staged"
+            local model_obj = prt.get_model "command"
+            prt.Prompt(params, prt.ui.Target.append, model_obj, nil, template)
+          end
+        end,
         SpellCheck = function(prt, params)
           local chat_prompt = [[
         Your task is to take the text provided and rewrite it into a clear,
