@@ -4,7 +4,8 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "pylsp", "gopls", "ccls", "htmx", "cmake", "ts_ls", "templ", "yamlls", "jsonls" }
+local servers =
+  { "html", "cssls", "pylsp", "gopls", "ccls", "htmx", "cmake", "ts_ls", "templ", "yamlls", "jsonls", "svelte" }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -14,6 +15,12 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+lspconfig.svelte.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "svelte" },
+}
 
 -- typescript
 lspconfig.ts_ls.setup {
@@ -49,4 +56,14 @@ lspconfig.terraformls.setup {
 
 lspconfig.jsonls.setup {
   capabilities = vim_capb,
+}
+
+lspconfig.helm_ls.setup {
+  settings = {
+    ["helm-ls"] = {
+      yamlls = {
+        path = "yaml-language-server",
+      },
+    },
+  },
 }
