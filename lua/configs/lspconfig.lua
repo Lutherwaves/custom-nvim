@@ -4,8 +4,20 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers =
-  { "html", "cssls", "pylsp", "gopls", "ccls", "htmx", "cmake", "ts_ls", "templ", "yamlls", "jsonls", "svelte" }
+local servers = {
+  "html",
+  "cssls",
+  "pylsp",
+  "gopls",
+  "ccls",
+  "cmake",
+  "ts_ls",
+  "templ",
+  "yamlls",
+  "jsonls",
+  "svelte",
+  "angularls",
+}
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -28,17 +40,28 @@ lspconfig.ts_ls.setup {
   on_init = on_init,
   capabilities = capabilities,
 }
-lspconfig.htmx.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "html", "templ" },
-}
+
 lspconfig.html.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { "html", "templ" },
+  init_options = {
+    configurationSection = { "html", "css", "javascript" },
+    embeddedLanguages = {
+      css = true,
+      javascript = true,
+    },
+    provideFormatter = true,
+  },
 }
-lspconfig.templ.setup {}
+
+lspconfig.angularls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "component.html" },
+  root_dir = lspconfig.util.root_pattern("angular.json", "project.json"),
+  cmd = { "ngserver", "--stdio", "--tsProbeLocations", vim.fn.getcwd(), "--ngProbeLocations", vim.fn.getcwd() },
+}
+
 lspconfig.tailwindcss.setup {
   on_attach = on_attach,
   capabilities = capabilities,
