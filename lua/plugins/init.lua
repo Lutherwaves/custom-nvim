@@ -315,4 +315,20 @@ return {
       { "<C-g>q", "<cmd>PrtAsk<cr>", mode = { "n" }, desc = "Ask a question" },
     },
   },
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      defaults = {
+        hidden = true,
+        no_ignore = true,
+        file_ignore_patterns = { "node_modules/", "%.venv/", "^node_modules/", "^%.venv/" },
+      },
+      pickers = {
+        find_files = {
+          hidden = true,
+          no_ignore = true,
+        },
+      },
+    },
+  },
 }
