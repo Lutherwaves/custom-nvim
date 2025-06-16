@@ -51,26 +51,17 @@ return {
       },
     },
   },
-  -- Enhanced aider configuration
+  -- Official aider.nvim integration
   {
-    "jondkinney/aider-nvim",
+    "joshuavial/aider.nvim",
     lazy = false,
     config = function()
-      require("aider").setup {
-        auto_manage_context = true,
-        default_bindings = true,
-        -- Additional options for better integration
-        aider_args = {
-          "--watch-files", -- Watch for file changes
-          "--model",
-          "perplexity/sonar-pro", -- Use Perplexity model
-          "--api-key",
-          os.getenv "PERPLEXITY_API_KEY",
-        },
-      }
+      require("aider").setup({
+        -- You can add options here if needed, see plugin docs
+        -- Example: model = "perplexity/sonar-pro",
+      })
     end,
     keys = {
-      -- Quick access keybindings
       { "<leader>ai", "<cmd>AiderOpen<cr>", desc = "Open Aider Chat" },
       { "<leader>af", "<cmd>AiderAddCurrentFile<cr>", desc = "Add Current File to Aider" },
       { "<leader>ar", "<cmd>AiderRemoveCurrentFile<cr>", desc = "Remove Current File from Aider" },
