@@ -56,10 +56,10 @@ return {
     "joshuavial/aider.nvim",
     lazy = false,
     config = function()
-      require("aider").setup({
+      require("aider").setup {
         -- You can add options here if needed, see plugin docs
         -- Example: model = "perplexity/sonar-pro",
-      })
+      }
     end,
     keys = {
       { "<leader>ai", "<cmd>AiderOpen<cr>", desc = "Open Aider Chat" },
