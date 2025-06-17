@@ -74,6 +74,7 @@ return {
       require("aider").setup {
         -- You can add options here if needed, see plugin docs
         -- Example: model = "perplexity/sonar-pro",
+        no_show_model_warnings = true,
       }
     end,
     keys = {
