@@ -1,3 +1,11 @@
+> ⚠️ **Repository Archived**
+>
+> This repository is **no longer maintained**.
+>  
+> All future personal **Neovim** and other **dotfiles** work can now be found here:  
+> 👉 [https://github.com/Lutherwaves/dotfiles](https://github.com/Lutherwaves/dotfiles)
+```
+
 # Custom Neovim Configuration
 
 A modern, modular, and extensible Neovim setup powered by [NvChad](https://github.com/NvChad/NvChad), tailored for productivity, code intelligence, and a smooth developer experience.
